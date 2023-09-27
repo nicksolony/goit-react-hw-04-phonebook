@@ -18,10 +18,11 @@ export class App extends Component {
   componentDidMount() {
     const contacts = localStorage.getItem('contacts');
     const parsedContacts = JSON.parse(contacts);
-
+    
     if (parsedContacts) {
-      this.setState({ contacts });
-    }
+      this.setState({ contacts: parsedContacts });
+    };
+
   };
 
   componentDidUpdate(prevState) {
@@ -33,8 +34,6 @@ export class App extends Component {
     if (nextContacts !== prevContacts) {
       localStorage.setItem('contacts', JSON.stringify(nextContacts));
     }
-    console.log(localStorage.getItem('contacts'));
-    console.log(this.state);
   };
 
 
@@ -71,9 +70,11 @@ export class App extends Component {
 
   filterContacts = () => {
     let { filter, contacts } = this.state;
-    let normalizedFilter = this.state.filter.toLowerCase();
+    let normalizedFilter = filter.toLowerCase();
+    
     return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter)
     );
+
   };
 
   deleteContact = (contactId) => {
@@ -85,7 +86,6 @@ export class App extends Component {
   
   
   render() {
-
     let {filter} = this.state;
     let filteredContacts = this.filterContacts();
 
