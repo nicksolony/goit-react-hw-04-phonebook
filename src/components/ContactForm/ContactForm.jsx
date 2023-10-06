@@ -28,7 +28,6 @@ export const ContactForm = ({onSubmit}) => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(name,number);
         onSubmit(name, number);
         reset();
     };

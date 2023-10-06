@@ -15,7 +15,17 @@ export const App = () => {
   //   filter: ''
   // };
 
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(() => {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    
+    if (parsedContacts) {
+      return parsedContacts;
+    } else {
+      return [];
+    };
+  });
+  
   const [filterValue, setFilterValue] = useState('');
 
   // componentDidMount() {
@@ -28,14 +38,14 @@ export const App = () => {
 
   // };
 
-  useEffect(() => {
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
+  // useEffect(() => {
+  //   const contacts = localStorage.getItem('contacts');
+  //   const parsedContacts = JSON.parse(contacts);
     
-    if (parsedContacts) {
-      setContacts(parsedContacts);
-    };
-  }, []);
+  //   if (parsedContacts) {
+  //     setContacts(parsedContacts);
+  //   };
+  // }, []);
 
   // componentDidUpdate(prevState) {
 
