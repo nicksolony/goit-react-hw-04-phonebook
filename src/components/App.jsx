@@ -66,7 +66,7 @@ export const App = () => {
     setFilterValue(value);
   };
 
-  const checkContactEntry = ({ name, number }) => {
+  const checkContactEntry = (name, number ) => {
     let normalizedName = name.toLowerCase();
 
     !contacts.find((contact) => contact.name.toLowerCase() === normalizedName) ? addNewContact({ name, number }) : alert(`${name} is already in contacts.`);
